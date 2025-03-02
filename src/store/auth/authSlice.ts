@@ -6,6 +6,7 @@ interface AuthState {
   user: any | null;
   loading: boolean;
   error: string | null;
+  registrationSuccess: boolean;
 }
 
 const initialState: AuthState = {
@@ -13,6 +14,7 @@ const initialState: AuthState = {
   user: null,
   loading: true,
   error: null,
+  registrationSuccess: false
 };
 
 export const login = createAsyncThunk(
@@ -70,6 +72,9 @@ const authSlice = createSlice({
     clearAuthError: (state) => {
       state.error = null;
     },
+    resetRegistrationSuccess: (state) => {
+      state.registrationSuccess = false;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -125,13 +130,15 @@ const authSlice = createSlice({
       .addCase(register.fulfilled, (state) => {
         state.loading = false;
         state.error = null;
+        state.registrationSuccess = true;
       })
       .addCase(register.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
+        state.registrationSuccess = false;
       });
   },
 });
 
-export const { clearAuthError } = authSlice.actions;
+export const { clearAuthError, resetRegistrationSuccess } = authSlice.actions;
 export default authSlice.reducer;
