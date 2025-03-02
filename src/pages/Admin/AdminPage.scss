@@ -1,0 +1,89 @@
+.admin-page {
+  .page-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 500;
+  }
+  
+  .card {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .dx-datagrid {
+    .dx-datagrid-headers {
+      background-color: #f9f9f9;
+      font-weight: 500;
+    }
+    
+    .dx-row-alt {
+      background-color: #f5f8fa;
+    }
+    
+    .dx-data-row {
+      &:hover {
+        background-color: #e8f4ff;
+      }
+    }
+  }
+  
+  .role-badge {
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+    
+    &.role-admin {
+      background-color: #ffebee;
+      color: #c62828;
+    }
+    
+    &.role-manager {
+      background-color: #e3f2fd;
+      color: #1565c0;
+    }
+    
+    &.role-user {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+  }
+  
+  .dx-popup-title {
+    background-color: var(--primary-color);
+    color: white;
+    
+    .dx-toolbar-items-container {
+      height: 50px;
+    }
+    
+    .dx-toolbar-label {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+  
+  .dx-popup-content {
+    padding: 20px;
+  }
+  
+  .dx-button-has-text {
+    &.dx-button-success {
+      background-color: var(--secondary-color);
+    }
+    
+    &.dx-button-danger {
+      background-color: var(--danger-color);
+    }
+  }
+  
+  .dx-form {
+    .dx-item-content {
+      margin-bottom: 10px;
+    }
+  }
+}
