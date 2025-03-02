@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import TextBox from 'devextreme-react/text-box';
 import Button from 'devextreme-react/button';
 import Tabs from 'devextreme-react/tabs';
-import { login, clearAuthError, register } from '@/store/auth/authSlice';
+import { login, clearAuthError } from '@/store/auth/authSlice';
 import { AppDispatch, RootState } from '@/store';
 import RegisterForm from './RegisterForm';
 import './LoginPage.scss';
@@ -55,8 +55,8 @@ const LoginPage = () => {
   };
 
   const tabItems = [
-    { text: 'Connexion', id: 0 },
-    { text: 'Inscription', id: 1 }
+    { text: 'Connexion' },
+    { text: 'Inscription' }
   ];
 
   return (
