@@ -1,0 +1,62 @@
+.app-layout {
+  display: flex;
+  height: 100vh;
+  
+  .layout-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    
+    .app-header {
+      border-bottom: 1px solid var(--border-color);
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      
+      .dx-toolbar {
+        background-color: transparent;
+        padding: 5px 10px;
+        
+        .logo {
+          font-size: 18px;
+          font-weight: 500;
+          color: var(--primary-color);
+          margin-left: 10px;
+        }
+        
+        .user-menu {
+          display: flex;
+          align-items: center;
+          
+          .user-name {
+            margin-right: 10px;
+            font-weight: 500;
+          }
+          
+          .dx-menu {
+            .dx-menu-item-wrapper {
+              .dx-menu-item {
+                padding: 8px 10px;
+                
+                .dx-menu-item-content {
+                  padding: 0;
+                  
+                  .dx-icon {
+                    margin-right: 8px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    .app-content {
+      flex: 1;
+      padding: 20px;
+      background-color: var(--light-bg);
+      overflow-y: auto;
+    }
+  }
+}
