@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Form, { 
   Item, 
@@ -8,23 +8,9 @@ import Form, {
   StringLengthRule,
   CustomRule 
 } from 'devextreme-react/form';
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { authService } from '@/api/authService';
+import { register } from '@/store/auth/authSlice';
 import { AppDispatch, RootState } from '@/store';
 import './RegisterForm.scss';
-
-// Action asynchrone pour l'inscription
-export const register = createAsyncThunk(
-  'auth/register',
-  async (userData: any, { rejectWithValue }) => {
-    try {
-      const response = await authService.register(userData);
-      return response.data;
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || 'Échec de l\'inscription');
-    }
-  }
-);
 
 interface RegisterFormProps {
   onSuccess: () => void;
@@ -32,7 +18,7 @@ interface RegisterFormProps {
 
 const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { loading, error } = useSelector((state: RootState) => state.auth);
+  const { loading, error, registrationSuccess } = useSelector((state: RootState) => state.auth);
   
   const [formData, setFormData] = useState({
     name: '',
@@ -41,6 +27,13 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
     confirmPassword: '',
     department: ''
   });
+
+  // Surveiller le succès de l'inscription pour appeler onSuccess
+  useEffect(() => {
+    if (registrationSuccess) {
+      onSuccess();
+    }
+  }, [registrationSuccess, onSuccess]);
 
   const handleFieldChange = (e: any) => {
     const { dataField, value } = e.component.option();
@@ -59,11 +52,18 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
     // Supprimer le champ confirmPassword avant d'envoyer à l'API
     const { confirmPassword, ...userData } = formData;
     
-    const resultAction = await dispatch(register(userData));
-    
-    if (register.fulfilled.match(resultAction)) {
-      onSuccess();
+    // Simulation d'API pour le développement local
+    // Dans une vraie application, ceci serait la vraie requête API
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Inscription simulée en mode développement:', userData);
+      // Simuler un délai de traitement de 1 seconde
+      setTimeout(() => {
+        onSuccess();
+      }, 1000);
+      return;
     }
+    
+    dispatch(register(userData));
   };
 
   const departmentOptions = [
