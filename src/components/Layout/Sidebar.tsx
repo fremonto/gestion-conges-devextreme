@@ -42,16 +42,10 @@ const Sidebar = () => {
     },
     ...(isAdmin ? [
       {
-        id: 'utilisateurs',
-        text: 'Gestion des utilisateurs',
-        icon: 'user',
-        path: '/utilisateurs',
-      },
-      {
-        id: 'departements',
-        text: 'Gestion des départements',
-        icon: 'group',
-        path: '/departements',
+        id: 'admin',
+        text: 'Administration',
+        icon: 'toolbox',
+        path: '/admin',
       },
     ] : []),
   ];
