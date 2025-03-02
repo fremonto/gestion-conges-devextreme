@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import TextBox from 'devextreme-react/text-box';
 import Button from 'devextreme-react/button';
 import Tabs from 'devextreme-react/tabs';
-import { login, clearAuthError } from '@/store/auth/authSlice';
+import { login, clearAuthError, register } from '@/store/auth/authSlice';
 import { AppDispatch, RootState } from '@/store';
 import RegisterForm from './RegisterForm';
 import './LoginPage.scss';
@@ -54,6 +54,11 @@ const LoginPage = () => {
     setActiveTab(0);
   };
 
+  const tabItems = [
+    { text: 'Connexion', id: 0 },
+    { text: 'Inscription', id: 1 }
+  ];
+
   return (
     <div className="login-page">
       <div className="login-container">
@@ -62,10 +67,7 @@ const LoginPage = () => {
         </div>
         
         <Tabs
-          items={[
-            { text: 'Connexion' },
-            { text: 'Inscription' }
-          ]}
+          items={tabItems}
           selectedIndex={activeTab}
           onSelectedIndexChange={handleTabChange}
           className="auth-tabs"
