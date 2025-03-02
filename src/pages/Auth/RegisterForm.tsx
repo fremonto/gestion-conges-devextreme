@@ -47,22 +47,12 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
     return formData.password === formData.confirmPassword;
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     // Supprimer le champ confirmPassword avant d'envoyer à l'API
     const { confirmPassword, ...userData } = formData;
     
-    // Simulation d'API pour le développement local
-    // Dans une vraie application, ceci serait la vraie requête API
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Inscription simulée en mode développement:', userData);
-      // Simuler un délai de traitement de 1 seconde
-      setTimeout(() => {
-        onSuccess();
-      }, 1000);
-      return;
-    }
-    
+    // Dispatch l'action d'inscription
     dispatch(register(userData));
   };
 
@@ -143,6 +133,7 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
             text: "S'inscrire",
             type: "default",
             useSubmitBehavior: true,
+            width: "100%",
             onClick: handleSubmit,
             disabled: loading
           }}
