@@ -53,8 +53,8 @@ const LoginPage = () => {
     dispatch(login(credentials));
   };
 
-  const handleTabChange = (e: any) => {
-    setActiveTab(e.value);
+  const handleTabClick = (e: any) => {
+    setActiveTab(e.itemIndex);
     // Effacer les erreurs lors du changement d'onglet
     if (error) {
       dispatch(clearAuthError());
@@ -63,7 +63,6 @@ const LoginPage = () => {
 
   const handleRegisterSuccess = () => {
     // Cette fonction est transmise au RegisterForm qui l'appellera lors du succès
-    // Un message de confirmation peut être affiché ici si nécessaire
     console.log("Inscription réussie!");
   };
 
@@ -82,7 +81,7 @@ const LoginPage = () => {
         <Tabs
           items={tabItems}
           selectedIndex={activeTab}
-          onItemClick={handleTabChange}
+          onItemClick={handleTabClick}
           className="auth-tabs"
         />
         
