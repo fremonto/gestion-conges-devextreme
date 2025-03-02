@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Form, { Item, ButtonItem, RequiredRule, EmailRule, StringLengthRule } from 'devextreme-react/form';
+import Form, { 
+  Item, 
+  ButtonItem, 
+  RequiredRule, 
+  EmailRule, 
+  StringLengthRule, 
+  CustomRule
+} from 'devextreme-react/form';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { authService } from '@/api/authService';
 import { AppDispatch, RootState } from '@/store';
