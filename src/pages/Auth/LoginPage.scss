@@ -15,12 +15,32 @@
     
     .login-logo {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       
       h1 {
         color: var(--primary-color);
         font-size: 24px;
         font-weight: 500;
+      }
+    }
+    
+    .auth-tabs {
+      margin-bottom: 20px;
+
+      .dx-tabs {
+        background-color: transparent;
+        border: none;
+      }
+
+      .dx-tab {
+        padding: 10px 15px;
+        border-bottom: 2px solid #ddd;
+        color: #666;
+        
+        &.dx-tab-selected {
+          color: var(--primary-color);
+          border-bottom: 2px solid var(--primary-color);
+        }
       }
     }
     
