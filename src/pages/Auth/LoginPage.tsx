@@ -1,22 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextBox from 'devextreme-react/text-box';
 import Button from 'devextreme-react/button';
 import Tabs from 'devextreme-react/tabs';
-import { login, clearAuthError } from '@/store/auth/authSlice';
+import { login, clearAuthError, resetRegistrationSuccess } from '@/store/auth/authSlice';
 import { AppDispatch, RootState } from '@/store';
 import RegisterForm from './RegisterForm';
 import './LoginPage.scss';
 
 const LoginPage = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { loading, error } = useSelector((state: RootState) => state.auth);
+  const { loading, error, registrationSuccess } = useSelector((state: RootState) => state.auth);
   
   const [activeTab, setActiveTab] = useState(0);
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
   });
+
+  // Effet pour réinitialiser le flag de succès d'inscription au chargement du composant
+  useEffect(() => {
+    dispatch(resetRegistrationSuccess());
+  }, [dispatch]);
+
+  // Effet pour basculer vers l'onglet de connexion après une inscription réussie
+  useEffect(() => {
+    if (registrationSuccess) {
+      setActiveTab(0);
+    }
+  }, [registrationSuccess]);
 
   const handleChange = (e: any) => {
     const { name, value } = e.element.dataset;
@@ -50,8 +62,9 @@ const LoginPage = () => {
   };
 
   const handleRegisterSuccess = () => {
-    // Revenir à l'onglet de connexion après une inscription réussie
-    setActiveTab(0);
+    // Cette fonction est transmise au RegisterForm qui l'appellera lors du succès
+    // Un message de confirmation peut être affiché ici si nécessaire
+    console.log("Inscription réussie!");
   };
 
   const tabItems = [
@@ -69,9 +82,15 @@ const LoginPage = () => {
         <Tabs
           items={tabItems}
           selectedIndex={activeTab}
-          onSelectedIndexChange={handleTabChange}
+          onItemClick={handleTabChange}
           className="auth-tabs"
         />
+        
+        {registrationSuccess && activeTab === 0 && (
+          <div className="registration-success">
+            Inscription réussie ! Vous pouvez maintenant vous connecter.
+          </div>
+        )}
         
         {activeTab === 0 ? (
           <form className="login-form" onSubmit={handleSubmit}>
