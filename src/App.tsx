@@ -5,13 +5,15 @@ import Layout from './components/Layout/Layout';
 import DemandeCongesPage from './pages/DemandeConges/DemandeCongesPage';
 import LoginPage from './pages/Auth/LoginPage';
 import NotFoundPage from './pages/NotFound/NotFoundPage';
+import AdminPage from './pages/Admin/AdminPage';
 import ProtectedRoute from './components/Auth/ProtectedRoute';
 import { RootState } from './store';
 import { checkAuth } from './store/auth/authSlice';
+import { UserRole } from './types/user';
 
 function App() {
   const dispatch = useDispatch();
-  const { isAuthenticated, loading } = useSelector((state: RootState) => state.auth);
+  const { isAuthenticated, user, loading } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
     dispatch(checkAuth());
@@ -28,6 +30,13 @@ function App() {
       <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
         <Route index element={<Navigate to="/demandes" replace />} />
         <Route path="demandes" element={<DemandeCongesPage />} />
+        
+        {/* Routes Admin protégées */}
+        <Route path="admin" element={
+          <ProtectedRoute requiredRole="ADMIN">
+            <AdminPage />
+          </ProtectedRoute>
+        } />
       </Route>
       
       <Route path="*" element={<NotFoundPage />} />
