@@ -7,7 +7,7 @@
   
   .login-container {
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -25,7 +25,7 @@
     }
     
     .auth-tabs {
-      margin-bottom: 20px;
+      margin-bottom: 30px;
 
       .dx-tabs {
         background-color: transparent;
@@ -36,6 +36,7 @@
         padding: 10px 15px;
         border-bottom: 2px solid #ddd;
         color: #666;
+        cursor: pointer;
         
         &.dx-tab-selected {
           color: var(--primary-color);
