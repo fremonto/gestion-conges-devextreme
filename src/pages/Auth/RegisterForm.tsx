@@ -5,13 +5,12 @@ import Form, {
   ButtonItem, 
   RequiredRule, 
   EmailRule, 
-  StringLengthRule, 
-  CustomRule
+  StringLengthRule,
+  CustomRule 
 } from 'devextreme-react/form';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { authService } from '@/api/authService';
 import { AppDispatch, RootState } from '@/store';
-import RegisterSuccess from './registerSuccess';
 import './RegisterForm.scss';
 
 // Action asynchrone pour l'inscription
@@ -42,8 +41,6 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
     confirmPassword: '',
     department: ''
   });
-  
-  const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
   const handleFieldChange = (e: any) => {
     const { dataField, value } = e.component.option();
@@ -65,7 +62,7 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
     const resultAction = await dispatch(register(userData));
     
     if (register.fulfilled.match(resultAction)) {
-      setRegistrationSuccess(true);
+      onSuccess();
     }
   };
 
@@ -78,15 +75,6 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
     'Ventes',
     'Direction'
   ];
-  
-  const handleRegistrationSuccess = () => {
-    setRegistrationSuccess(false);
-    onSuccess();
-  };
-
-  if (registrationSuccess) {
-    return <RegisterSuccess onClose={handleRegistrationSuccess} />;
-  }
 
   return (
     <div className="register-form">
