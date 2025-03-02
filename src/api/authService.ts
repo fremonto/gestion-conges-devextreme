@@ -47,7 +47,25 @@ export const authService = {
   },
   
   register: async (userData: any) => {
-    return await httpClient.post('/auth/register', userData);
+    try {
+      // Dans une vraie application, appelez l'API d'inscription
+      const response = await httpClient.post('/auth/register', userData);
+      
+      // Simulons une réponse pour le développement
+      // TODO: Supprimer ce bloc dans l'environnement de production
+      if (!response.data) {
+        return {
+          data: {
+            message: "Inscription réussie. Veuillez vous connecter.",
+            success: true
+          }
+        };
+      }
+      
+      return response;
+    } catch (error) {
+      throw error;
+    }
   },
   
   requestPasswordReset: async (email: string) => {
