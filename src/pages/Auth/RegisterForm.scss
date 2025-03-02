@@ -1,0 +1,26 @@
+.register-form {
+  .form-error {
+    background-color: #ffebee;
+    color: #d32f2f;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+
+  .dx-field-item-label {
+    font-weight: 500;
+  }
+
+  .dx-item-content {
+    margin-bottom: 15px;
+  }
+
+  .dx-buttonitem {
+    margin-top: 15px;
+  }
+
+  .dx-button-has-text {
+    width: 100%;
+  }
+}
