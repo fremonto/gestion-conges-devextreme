@@ -1,0 +1,22 @@
+.role-badge {
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+  
+  &.role-admin {
+    background-color: #ffebee;
+    color: #c62828;
+  }
+  
+  &.role-manager {
+    background-color: #e3f2fd;
+    color: #1565c0;
+  }
+  
+  &.role-user {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+  }
+}
