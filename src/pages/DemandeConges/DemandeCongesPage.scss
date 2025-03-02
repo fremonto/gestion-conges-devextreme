@@ -1,0 +1,40 @@
+.demandes-conges-page {
+  .page-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 500;
+  }
+  
+  .card {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .dx-datagrid {
+    .dx-datagrid-headers {
+      background-color: #f9f9f9;
+      font-weight: 500;
+    }
+    
+    .dx-row-alt {
+      background-color: #f5f8fa;
+    }
+    
+    .dx-data-row {
+      cursor: pointer;
+      
+      &:hover {
+        background-color: #e8f4ff;
+      }
+    }
+  }
+}
+
+.demande-popup {
+  .dx-popup-content {
+    padding: 20px;
+  }
+}
